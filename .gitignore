@@ -1,0 +1,5 @@
+# Ignore object files, dependency files, executable files, and backup files
+**/*.o
+**/*.P
+**/*.x
+**/*.doc#
