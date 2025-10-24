@@ -11,7 +11,7 @@ DEBUG  = -g
 SYSDIR = -I $(SYSTEMC)/include
           
 INCDIR = -I. -I.. $(SYSDIR)
-LIBDIR = -L. -L.. -L$(SYSTEMC)/lib
+LIBDIR = -L. -L.. -L$(SYSTEMC)/lib-linux64 -L$(SYSTEMC)/lib
 
 ## Build with maximum gcc warning level
 CFLAGS = -Wall -Wno-deprecated -Wno-return-type -Wno-char-subscripts $(DEBUG) $(OPT) $(EXTRACFLAGS)
@@ -22,7 +22,7 @@ EXE    = $(MODULE).x
 
 .PHONY: clean 
 
-$(EXE): $(OBJS) $(SYSTEMC)/lib/libsystemc.so
+$(EXE): $(OBJS)
 	$(CC) $(CFLAGS) $(INCDIR) $(LIBDIR) -o $@ $(OBJS) $(LIBS) 2>&1 | c++filt
 
 ## based on http://www.paulandlesley.org/gmake/autodep.html
