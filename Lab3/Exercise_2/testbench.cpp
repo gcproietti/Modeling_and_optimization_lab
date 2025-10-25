@@ -2,26 +2,26 @@
 
 
 void testbench::test(void) {
-    // Test vectors
-    int test_vectors[8][2] = {
-        {0, 0}, //car2, car1
-        {0, 1},
-        {1, 0},
-        {1, 1},
-    };
 
-    for (int i = 0; i < 8; ++i) {
-        A.write(test_vectors[i][0]);
-        B.write(test_vectors[i][1]);
-        Cin.write(test_vectors[i][2]);
+//    car1.write(0);
+//    car2.write(0);
+    cout << "car1: " << car1.read() << "car2: " << car2.read() << endl;
+    wait(20, SC_SEC);
+    car2.write(1);
 
-        std::cout << "Testbench applied: A=" << test_vectors[i][0]
-             << " B=" << test_vectors[i][1]
-             << " Cin=" << test_vectors[i][2]
-             << " @ " << sc_time_stamp() << std::endl;
+    wait(20, SC_SEC);
+    car1.write(1);
 
-        wait(10, SC_NS); // wait for 10 ns before applying next vector
-    }
+    wait(20, SC_SEC);
+    car2.write(0);
 
-    sc_stop(); // End simulation
+    wait(5, SC_SEC);
+    car1.write(0);
+
+    wait(20, SC_SEC);
+    car1.write(1);
+    car2.write(1);
+
+    wait(30, SC_SEC);
+   sc_stop(); // End simulation
 }
